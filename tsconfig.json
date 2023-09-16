@@ -1,0 +1,20 @@
+{
+  "extends": "@vercel/style-guide/typescript",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "lib": ["dom", "esnext"],
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "esnext",
+    "noImplicitAny": false,
+    "paths": {
+      // Make sure the root d.ts isn't picked up by TS locally
+      "react": ["node_modules/react"],
+      "preact": ["node_modules/preact"]
+    }
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": ["node_modules", "dist", "*.d.ts"]
+}
