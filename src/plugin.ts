@@ -1,21 +1,19 @@
-import type { PluginItem, PluginObj } from '@babel/core';
+import type { PluginItem } from '@babel/core';
 import { parse, traverse } from '@babel/core';
 import generate from '@babel/generator';
-import { declare } from '@babel/helper-plugin-utils';
+import { addDefault } from '@babel/helper-module-imports';
 import pluginSyntaxJsx from '@babel/plugin-syntax-jsx';
 import pluginSyntaxTypescript from '@babel/plugin-syntax-typescript';
 import * as t from '@babel/types';
-import dedent from 'dedent';
 import OpenAI from 'openai';
 import { createUnplugin } from 'unplugin';
 import { isCapitalized } from './utils';
-import { addDefault, addNamed } from '@babel/helper-module-imports';
 
 export interface Options {
   apiKey: string;
   openai?: OpenAI;
   plugins?: PluginItem[];
-  deferred?: (() => Promise<string | null>)[];
+  deferred?: (() => Promise<void>)[];
   generatorCode?: { filename: string };
 }
 
@@ -44,7 +42,7 @@ export const unplugin = createUnplugin((options: Options) => {
           { allExtensions: true, isTSX: true },
         ]);
       }
-      const todo: (() => Promise<{ prev: string } | null>)[] = [];
+      const todo: (() => Promise<void>)[] = [];
 
       const ast = parse(code, {
         plugins,
@@ -74,16 +72,15 @@ export const unplugin = createUnplugin((options: Options) => {
               messages: [
                 {
                   role: 'user',
-                  content: dedent`
-                This is a React component, optimize it with React.useMemo, React.useCallback. you must prepend hooks with "React.". Do not optimize identifiers. Try to pre-evaluate expressions. Only return the new component function declaration in plaintext. Do not include the imports or exports:\n\n${code}`,
+                  content:
+                    `This is a React component, optimize it with React.useMemo, React.useCallback. you must prepend hooks with "React.". Do not optimize identifiers. Try to pre-evaluate expressions. Only return the new component function declaration in plaintext. Do not include the imports or exports:\n\n${code}`.trim(),
                 },
               ],
-              model: 'gpt-4',
+              model: 'gpt-3.5-turbo',
             });
             const content = completion.choices[0]?.message.content;
             if (!content) return null;
 
-            // validate function declaration
             const ast = parse(content, {
               plugins,
             });
