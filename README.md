@@ -61,3 +61,20 @@ module.exports = {
   plugins: [withReaict.webpack({ apiKey: 'YOUR_OPENAI_KEY' })],
 };
 ```
+
+## Notes
+
+so much that can be done:
+
+- prompt optimization
+- support class / arrow func components
+- pre-eval functions
+- github action instead of every run
+- cache functions across runs
+- component validation (perf profiling + screenshot)
+- optimizing on threshold (don't memo everything)
+- integration w/ v0?
+- user hints (e.g. put a function // optimize!)
+- integration w/ million.js
+- package analysis and auto refactor
+- automatic error handing
