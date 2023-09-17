@@ -89,6 +89,7 @@ export const unplugin = createUnplugin((options: Options) => {
               return await optimize();
 
             path.replaceWith(functionDeclaration);
+            console.log('Optimized: ', path.node.id?.name);
             addDefault(path, 'react', { nameHint: 'React' });
           };
           todo!.push(optimize);
