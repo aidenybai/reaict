@@ -4,6 +4,8 @@
 
 Reaict is a Next.js / Vite / Webpack plugin that automatically analyses your React components and optimizes them for performance during build time. It uses OpenAI's `gpt-3.5-turbo` model to generate the optimized code.
 
+Ideally this can improve your app's render performance. If you want to improve reconcilliation, run `npx million@latest` in your app to install [Million.js](https://million.dev)
+
 ## Installation
 
 ```bash
