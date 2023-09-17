@@ -7,7 +7,7 @@ Reaict is a Next.js / Vite / Webpack plugin that automatically analyses your Rea
 ## Installation
 
 ```bash
-npm install reaict
+npm install reaict-js
 ```
 
 ## Usage
