@@ -16,7 +16,7 @@ npm install reaict-js
 
 ```js
 // next.config.js
-const withReaict = require('reaict');
+const withReaict = require('reaict-js');
 
 module.exports = withReaict(
   {
@@ -29,7 +29,7 @@ module.exports = withReaict(
 ### Create React App
 
 ```js
-const withReaict = require('reaict');
+const withReaict = require('reaict-js');
 
 module.exports = {
   webpack: {
@@ -43,7 +43,7 @@ module.exports = {
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import withReaict from 'reaict';
+import withReaict from 'reaict-js';
 
 export default defineConfig({
   plugins: [withReaict.vite({ apiKey: 'YOUR_OPENAI_KEY' })],
@@ -53,7 +53,7 @@ export default defineConfig({
 ### Webpack
 
 ```js
-const withReaict = require('reaict');
+const withReaict = require('reaict-js');
 
 module.exports = {
   plugins: [withReaict.webpack({ apiKey: 'YOUR_OPENAI_KEY' })],
