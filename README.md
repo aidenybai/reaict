@@ -8,8 +8,13 @@ Ideally this can improve your app's render performance. If you want to improve r
 
 ## Installation
 
+npm
 ```bash
 npm install reaict-js
+```
+bun
+```bash
+bun install reaict-js
 ```
 
 ## Usage
