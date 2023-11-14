@@ -18,7 +18,7 @@ npm install reaict-js
 
 ```js
 // next.config.js
-const { next } = require('reaict-js');
+const { next } = require('reaict');
 
 module.exports = next(
   {
